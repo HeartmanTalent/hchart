@@ -48,7 +48,7 @@ export default function ContactTable(props) {
                 </List>
             ) : (
                 <Typography variant="h5" component="h5" sx={{ color: "red" }}>
-                    No Chat(s) Found
+                    No Contact (s) Found
                 </Typography>
             )}
         </>

@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 
 export const ContactContext = createContext({
-  contacts: [{ id: 1, avatar: "", fname: "Talent", lname: "Sibanda", phone: "+263784893647" }],
+  contacts: [],
   setContacts: (contacts) => { },
   updateContact: (id, avatar, fname, lname, phone) => { },
 });
@@ -25,7 +25,7 @@ function contactReducer(state, action) {
 }
 
 function ContactContextProvider({ children }) {
-  const [contactState, dispatch] = useReducer(contactReducer, []);
+  const [contactState, dispatch] = useReducer(contactReducer, [{ id: 1, avatar: "", fname: "Talent", lname: "Sibanda", phone: "+263784893647" }]);
   function setContacts(contacts) {
     dispatch({ type: "SET", payload: contacts });
   }

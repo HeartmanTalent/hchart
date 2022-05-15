@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from "react";
+import { useLocation } from 'react-router-dom';
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import {
@@ -9,6 +9,7 @@ import {
   Typography
 } from "@mui/material";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import { MessagesContext } from "../contexts/messagesContext";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,13 +37,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function ChatTable(props) {
   const chats = []
   const { state } = useLocation();
-  const { id } = state; 
+  const { id } = state;
+  const messagesCtx = useContext(MessagesContext);
 
   return (
     <Table sx={{ minWidth: 300 }} aria-label="customized table">
-      {(chats.length >= 1) ? (
+      {(messagesCtx.messages.length >= 1) ? (
         <TableBody>
-          {chats.map((chat) => (
+          {messagesCtx.messages.map((chat) => (
             <StyledTableRow key={chat.message}>
               <StyledTableCell component="th" scope="row" align={chat.inbox ? "left" : "right"}>
                 <Typography variant="body" gutterBottom >

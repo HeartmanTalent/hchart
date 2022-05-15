@@ -1,12 +1,12 @@
 import { createContext, useReducer } from "react";
 
 export const ChatContext = createContext({
-  chats: [{ id: 4, avatar: "", fname: "Narshy", lname: "Bae", message: "Hie Honey" }],
+  chats: [],
   setChats: (chats) => { },
   updateChat: (id, contacts) => { },
 });
 
-function clientReducer(state, action) {
+function chatReducer(state, action) {
   switch (action.type) {
     case "SET":
       return action.payload;
@@ -25,7 +25,7 @@ function clientReducer(state, action) {
 }
 
 function ChatContextProvider({ children }) {
-  const [clientState, dispatch] = useReducer(clientReducer, []);
+  const [clientState, dispatch] = useReducer(chatReducer, [{ id: 4, avatar: "", fname: "Narshy", lname: "Bae", message: "Hie Honey" }]);
 
   function setChats(chats) {
     dispatch({ type: "SET", payload: chats });
