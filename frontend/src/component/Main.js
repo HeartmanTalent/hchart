@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
-// import { ClientContext } from "../contexts/clientContext";
-// import { ContactContext } from "../contexts/contactContext";
+import { ChatContext } from "../contexts/chatContext";
+import { ContactContext } from "../contexts/contactContext";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
@@ -32,8 +32,7 @@ function TabPanel(props) {
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
             aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
+            {...other} >
             {value === index && (
                 <Box sx={{ p: 3 }}>
                     {children}
@@ -44,8 +43,8 @@ function TabPanel(props) {
 }
 
 export default function App() {
-    //   const clientCtx = useContext(ClientContext);
-    //   const contactCtx = useContext(ContactContext);
+    const chatCtx = useContext(ChatContext);
+    const contactCtx = useContext(ContactContext);
     const [value, setValue] = React.useState(0);
     const [errContact, setErrContact] = React.useState('')
     const [errClient, setErrClient] = React.useState('')
@@ -58,7 +57,7 @@ export default function App() {
     //     async function getClients() {
     //       try {
     //         const clients = await fetchData("/clients/");
-    //         clientCtx.setClients(clients);
+    //         chatCtx.setClients(clients);
     //       } catch (error) {
     //         setErrClient(error.message)
     //       }
@@ -93,15 +92,14 @@ export default function App() {
                         <TabPanel value={value} index={0}>
                             {errClient ?
                                 (errClient) : (
-                                    //   <ClientTable heading={"Clients"} rows={clientCtx.clients} />
-                                    <ChatTable chats={[{ id: 4, avatar: "", fname: "Hun", lname: "Bae", message: "Hie Honey" }]} />
+                                    <ChatTable chats={chatCtx.chats} />
                                 )
                             }
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             {errContact ?
                                 (errContact) : (
-                                    <ContactTable contacts={[{ id: 1, avatar: "", fname: "Heartman", lname: "Sibanda", phone: "+263784893647" }]} />
+                                    <ContactTable contacts={contactCtx.contacts} />
                                 )
                             }
                         </TabPanel>
