@@ -94,14 +94,14 @@ export default function App() {
                             {errClient ?
                                 (errClient) : (
                                     //   <ClientTable heading={"Clients"} rows={clientCtx.clients} />
-                                    <ChatTable chats={[{ message: "tom", inbox: true }, { message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam", inbox: false }]} />
+                                    <ChatTable chats={[{ id: 4, avatar: "", fname: "Hun", lname: "Bae", message: "Hie Honey" }]} />
                                 )
                             }
                         </TabPanel>
                         <TabPanel value={value} index={1}>
                             {errContact ?
                                 (errContact) : (
-                                    <ContactTable contacts={[{ id: 1, avatar: "", fname: "Heartman", lname: "Sibanda" }]} />
+                                    <ContactTable contacts={[{ id: 1, avatar: "", fname: "Heartman", lname: "Sibanda", phone: "+263784893647" }]} />
                                 )
                             }
                         </TabPanel>

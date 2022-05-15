@@ -5,7 +5,7 @@ import {
     ListItemButton,
     ListItemText,
     ListItemAvatar,
-    Checkbox,
+    // Checkbox,
     Avatar,
     Typography
 }
@@ -27,12 +27,12 @@ export default function ContactTable(props) {
                         return (
                             <ListItem
                                 key={contact.id}
-                                secondaryAction={
-                                    <Checkbox
-                                        edge="end"
-                                        onChange={handleToggle("value")}
-                                        inputProps={{ 'aria-labelledby': labelId }} />
-                                }
+                                // secondaryAction={
+                                //     <Checkbox
+                                //         edge="start"
+                                //         onChange={handleToggle("value")}
+                                //         inputProps={{ 'aria-labelledby': labelId }} />
+                                // }
                                 disablePadding>
                                 <ListItemButton>
                                     <ListItemAvatar>
@@ -40,7 +40,7 @@ export default function ContactTable(props) {
                                             alt={contact.fname + contact.lname}
                                             src={contact.avatar} />
                                     </ListItemAvatar>
-                                    <ListItemText id={labelId} primary={contact.fname + " " + contact.lname} />
+                                    <ListItemText id={labelId} primary={contact.fname + " " + contact.lname + " " + contact.phone} />
                                 </ListItemButton>
                             </ListItem>
                         );
