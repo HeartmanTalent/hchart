@@ -35,9 +35,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function ChatTable(props) {
   const { chats }=props
   return (
-    <Table sx={{ minWidth: 700 }} aria-label="customized table">
-      {([3] >= 1) ? (
-        <>
+    <Table sx={{ minWidth: 300 }} aria-label="customized table">
+      {(chats.length >= 1) ? (
           <TableBody>
             {chats.map((chat) => (
               <StyledTableRow key={chat.message}>
@@ -45,20 +44,19 @@ export default function ChatTable(props) {
                   <Typography variant="body" gutterBottom >
                     {chat.message}
                   </Typography>
-                  <Typography variant="caption" display="block" gutterBottom sx={{ color: "blue" }}>
+                  <Typography variant="body" display="block" gutterBottom sx={{ color: "blue" }}>
                     18:50 15-05-2022
                   </Typography>
                 </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
-        </>
       ) : (
         <TableHead>
           <TableRow>
             <TableCell align="center" colSpan={6}>
               <Typography variant="h5" component="h5" sx={{ color: "red" }}>
-                No Contact(s) Found
+                No Chat(s) Found
               </Typography>
             </TableCell>
           </TableRow>

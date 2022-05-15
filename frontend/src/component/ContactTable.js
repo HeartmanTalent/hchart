@@ -1,11 +1,15 @@
 import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Checkbox from '@mui/material/Checkbox';
-import Avatar from '@mui/material/Avatar';
+import {
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+    ListItemAvatar,
+    Checkbox,
+    Avatar,
+    Typography
+}
+    from '@mui/material';
 
 export default function ContactTable(props) {
 
@@ -13,32 +17,40 @@ export default function ContactTable(props) {
     };
 
     const { contacts } = props;
-    
+
     return (
-        <List dense sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
-            {contacts.map((contact) => {
-                const labelId = `checkbox-list-secondary-label-${contact.id}`;
-                return (
-                    <ListItem
-                        key={contact.id}
-                        secondaryAction={
-                            <Checkbox
-                                edge="end"
-                                onChange={handleToggle("value")}
-                                inputProps={{ 'aria-labelledby': labelId }} />
-                        }
-                        disablePadding>
-                        <ListItemButton>
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={contact.fname + contact.lname}
-                                    src={contact.avatar} />
-                            </ListItemAvatar>
-                            <ListItemText id={labelId} primary={contact.fname + " " + contact.lname} />
-                        </ListItemButton>
-                    </ListItem>
-                );
-            })}
-        </List>
+        <>
+            {(contacts.length >= 1) ? (
+                <List dense sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}>
+                    {contacts.map((contact) => {
+                        const labelId = `checkbox-list-secondary-label-${contact.id}`;
+                        return (
+                            <ListItem
+                                key={contact.id}
+                                secondaryAction={
+                                    <Checkbox
+                                        edge="end"
+                                        onChange={handleToggle("value")}
+                                        inputProps={{ 'aria-labelledby': labelId }} />
+                                }
+                                disablePadding>
+                                <ListItemButton>
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            alt={contact.fname + contact.lname}
+                                            src={contact.avatar} />
+                                    </ListItemAvatar>
+                                    <ListItemText id={labelId} primary={contact.fname + " " + contact.lname} />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                    })}
+                </List>
+            ) : (
+                <Typography variant="h5" component="h5" sx={{ color: "red" }}>
+                    No Chat(s) Found
+                </Typography>
+            )}
+        </>
     );
 }
